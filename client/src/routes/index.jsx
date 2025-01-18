@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import BookAppointmentPage from "../pages/BookApointmentPage";
 import AboutUs from "../pages/Aboutus";
+import Scheduler from "../pages/Sheduler";
 
 
 const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "about-us",
         element: <AboutUs />,
+      },
+      {
+        path:"sheduler",
+        element:<Scheduler/>
       },
     ],
   },
