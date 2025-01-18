@@ -7,7 +7,9 @@ const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMaximized, setIsMaximized] = useState(false);
-  const [userInput, setUserInput] = useState("");
+  const [userInput, setUserInput] = useState(
+    "Rate this image at a scale of 1 to 10 and give me the crop health give score only as output only integer as output"
+  );
   const [messages, setMessages] = useState([]);
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -41,9 +43,9 @@ const Chatbot = () => {
 
           const response = await axios.post(API_URL, formData);
           const reply = response.data.candidates[0].content.parts[0].text;
-
+          console.log(reply);
           setMessages([...newMessages, { sender: "LeafBot", text: reply }]);
-          setUserInput("");
+
           setImage(null);
           setLoading(false);
         };
@@ -52,7 +54,7 @@ const Chatbot = () => {
         const reply = response.data.candidates[0].content.parts[0].text;
 
         setMessages([...newMessages, { sender: "Gemini", text: reply }]);
-        setUserInput("");
+
         setLoading(false);
       }
     } catch (error) {
