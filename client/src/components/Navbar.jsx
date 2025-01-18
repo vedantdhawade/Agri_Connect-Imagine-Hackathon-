@@ -20,7 +20,7 @@ const Navbar = () => {
             Home
           </Link>
           <Link
-            to={"/home"}
+            to={"/about-us"}
             className="text-black text-lg hover:text-gray-900 transition duration-300"
           >
             About Us
