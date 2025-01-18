@@ -2,14 +2,14 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#f5f5f5] text-black py-8">
+    <footer className="bg-gradient-to-r from-green-50 to-green-100 text-black py-8">
       <div className="container mx-auto px-4">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* About Section */}
           <div>
-            <h3 className="text-black    text-lg font-bold mb-4">About Us</h3>
-            <p className="text-sm">
+            <h3 className="text-green-800 text-lg font-bold mb-4">About Us</h3>
+            <p className="text-sm text-gray-700">
               AgriConnect is dedicated to connecting farmers and agricultural
               enthusiasts with the tools and resources they need to succeed.
             </p>
@@ -17,12 +17,12 @@ const Footer = () => {
 
           {/* Navigation Links */}
           <div>
-            <h3 className="text-black text-lg font-bold mb-4">Quick Links</h3>
+            <h3 className="text-green-800 text-lg font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
                 <a
                   href="/home"
-                  className="hover:text-gray-500 transition-colors text-black"
+                  className="hover:text-green-600 transition-colors text-black"
                 >
                   Home
                 </a>
@@ -30,7 +30,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/about"
-                  className="hover:text-white transition-colors text-black"
+                  className="hover:text-green-600 transition-colors text-black"
                 >
                   About Us
                 </a>
@@ -38,7 +38,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/services"
-                  className="hover:text-white transition-colors text-black"
+                  className="hover:text-green-600 transition-colors text-black"
                 >
                   Services
                 </a>
@@ -46,7 +46,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/contact"
-                  className="hover:text-white transition-colors text-black"
+                  className="hover:text-green-600 transition-colors text-black"
                 >
                   Contact
                 </a>
@@ -56,13 +56,13 @@ const Footer = () => {
 
           {/* Contact Information */}
           <div>
-            <h3 className="text-black text-lg font-bold mb-4">Contact Us</h3>
+            <h3 className="text-green-800 text-lg font-bold mb-4">Contact Us</h3>
             <ul className="space-y-2">
               <li>
                 Email:{" "}
                 <a
                   href="mailto:support@agriconnect.com"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-green-600 transition-colors"
                 >
                   support@agriconnect.com
                 </a>
@@ -74,8 +74,8 @@ const Footer = () => {
         </div>
 
         {/* Footer Bottom */}
-        <div className="mt-8 border-t border-gray-700 pt-4 text-center">
-          <p>
+        <div className="mt-8 border-t border-green-600 pt-4 text-center">
+          <p className="text-gray-700">
             Copyright © {new Date().getFullYear()} - All rights reserved by
             AgriConnect.
           </p>

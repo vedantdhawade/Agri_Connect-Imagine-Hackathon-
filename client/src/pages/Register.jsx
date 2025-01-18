@@ -1,5 +1,6 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+
 const Register = () => {
   const [formdata, setformdata] = useState({
     username: "",
@@ -7,7 +8,7 @@ const Register = () => {
     password: "",
   });
 
-  const handleLogin = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
     console.log("username:", formdata.username);
     console.log("email : ", formdata.email);
@@ -31,20 +32,20 @@ const Register = () => {
       </div>
 
       {/* Right Side Form */}
-      <div className="flex flex-col justify-center items-center w-full md:w-1/2 bg-gradient-to-r  p-8">
+      <div className="flex flex-col justify-center items-center w-full md:w-1/2 bg-gradient-to-r from-green-50 to-green-200 p-8">
         <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-          <h2 className="text-4xl font-extrabold text-gray-800 mb-6 text-center">
+          <h2 className="text-4xl font-extrabold text-green-700 mb-6 text-center">
             Welcome User
           </h2>
-          <p className="text-gray-600 text-center mb-6">
+          <p className="text-green-600 text-center mb-6">
             Register to your account and start exploring.
           </p>
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleRegister}>
             {/* Email Input */}
             <div className="mb-4">
               <label
                 htmlFor="email"
-                className="block text-gray-700 text-sm font-semibold mb-2"
+                className="block text-green-700 text-sm font-semibold mb-2"
               >
                 Email
               </label>
@@ -58,15 +59,16 @@ const Register = () => {
                     email: e.target.value,
                   })
                 }
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                className="w-full px-4 py-2 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
                 placeholder="Enter your email"
                 required
               />
             </div>
+            {/* Username Input */}
             <div className="mb-4">
               <label
-                htmlFor="email"
-                className="block text-gray-700 text-sm font-semibold mb-2"
+                htmlFor="username"
+                className="block text-green-700 text-sm font-semibold mb-2"
               >
                 Username
               </label>
@@ -80,7 +82,7 @@ const Register = () => {
                     username: e.target.value,
                   })
                 }
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                className="w-full px-4 py-2 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
                 placeholder="Enter your Username"
                 required
               />
@@ -90,7 +92,7 @@ const Register = () => {
             <div className="mb-4">
               <label
                 htmlFor="password"
-                className="block text-gray-700 text-sm font-semibold mb-2"
+                className="block text-green-700 text-sm font-semibold mb-2"
               >
                 Password
               </label>
@@ -104,17 +106,17 @@ const Register = () => {
                     password: e.target.value,
                   })
                 }
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                className="w-full px-4 py-2 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
                 placeholder="Enter your password"
                 required
               />
             </div>
 
-            {/* Login Button */}
+            {/* Register Button */}
             <div className="mb-4">
               <button
                 type="submit"
-                className="w-full bg-indigo-500 text-white py-3 rounded-lg font-bold text-lg hover:bg-indigo-600 transition-all duration-300"
+                className="w-full bg-green-600 text-white py-3 rounded-lg font-bold text-lg hover:bg-green-700 hover:scale-105 transition-all duration-300"
               >
                 Register
               </button>
@@ -123,9 +125,9 @@ const Register = () => {
 
           {/* Additional Links */}
           <div className="text-center mt-4">
-            <p className="text-gray-600">
+            <p className="text-green-600">
               Have an account?{" "}
-              <Link to={"/login"} className="text-indigo-500 hover:underline">
+              <Link to={"/login"} className="text-green-500 hover:underline">
                 Login
               </Link>
             </p>

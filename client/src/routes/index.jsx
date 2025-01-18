@@ -14,10 +14,10 @@ import Consult from "../pages/Consult";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: < App/>,
     children: [
       {
-        path: "home",
+        path: "/home",
         element: <Home />,
       },
       {

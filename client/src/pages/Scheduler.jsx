@@ -23,7 +23,7 @@ const Scheduler = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen flex items-center justify-center bg-green-50">
       <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-lg">
         <h2 className="text-2xl font-semibold text-gray-800 text-center mb-6">
           Farmer Schedule Form
@@ -40,7 +40,7 @@ const Scheduler = () => {
                 name="farmerId"
                 value={formData.farmerId}
                 disabled
-                className="w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-300 px-4 py-2 bg-gray-100 cursor-not-allowed"
+                className="w-full border-green-600 rounded-lg shadow-sm focus:ring focus:ring-green-300 px-4 py-2 bg-green-100 cursor-not-allowed"
               />
             </div>
           </div>
@@ -57,7 +57,7 @@ const Scheduler = () => {
                 value={formData.taskTitle}
                 onChange={handleChange}
                 placeholder="Enter task title"
-                className="w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-300 px-4 py-2"
+                className="w-full border-green-600 rounded-lg shadow-sm focus:ring focus:ring-green-300 px-4 py-2"
               />
             </div>
           </div>
@@ -73,7 +73,7 @@ const Scheduler = () => {
               onChange={handleChange}
               placeholder="Enter task description"
               rows="4"
-              className="w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-300 px-4 py-2"
+              className="w-full border-green-600 rounded-lg shadow-sm focus:ring focus:ring-green-300 px-4 py-2"
             ></textarea>
           </div>
 
@@ -88,7 +88,7 @@ const Scheduler = () => {
                 name="scheduleTime"
                 value={formData.scheduleTime}
                 onChange={handleChange}
-                className="w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-300 px-4 py-2"
+                className="w-full border-green-600 rounded-lg shadow-sm focus:ring focus:ring-green-300 px-4 py-2"
               />
             </div>
           </div>
@@ -97,7 +97,7 @@ const Scheduler = () => {
           <div className="flex space-x-4">
             <button
               type="submit"
-              className="bg-black text-white px-6 py-2 rounded-lg shadow hover:bg-gray-800 w-full"
+              className="bg-green-600 text-white px-6 py-2 rounded-lg shadow hover:bg-green-700 transition duration-300 w-full"
             >
               Save Schedule
             </button>

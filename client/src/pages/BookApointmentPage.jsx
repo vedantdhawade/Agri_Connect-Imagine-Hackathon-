@@ -1,131 +1,123 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
-const BookAppointmentPage = () => {
-    const [formData, setFormData] = useState({
-        username: "",
-        phone: "",
-        appointmentDate: "",
-        appointmentTime: "",
-        message: "",
-    });
-    const [isSubmitted, setIsSubmitted] = useState(false);
+const BookAppointment = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [date, setDate] = useState("");
 
-    // Handle input changes
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Appointment booked successfully!");
+  };
 
-    // Handle form submission
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (!formData.username || !formData.phone || !formData.appointmentDate || !formData.appointmentTime) {
-            alert("Please fill in all required fields.");
-            return;
-        }
-        // Simulate form submission success
-        setIsSubmitted(true);
-        console.log("Form Submitted", formData);
+  return (
+    <div className="p-8 bg-gradient-to-r from-green-50 to-green-100">
+      {/* Hero Section */}
+      <motion.div 
+        initial={{ opacity: 0, y: -30 }} 
+        animate={{ opacity: 1, y: 0 }} 
+        transition={{ duration: 0.8 }}
+        className="text-center mb-12"
+      >
+        <h1 className="text-5xl font-extrabold text-green-800 mb-4">
+          Book Your Appointment 🌱
+        </h1>
+        <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+          Fill out the form below to book an appointment and get expert guidance for your farm.
+        </p>
+      </motion.div>
 
-        // Reset form data
-        setFormData({
-            username: "",
-            phone: "",
-            appointmentDate: "",
-            appointmentTime: "",
-            message: "",
-        });
-    };
+      {/* Appointment Form Section */}
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }} 
+        animate={{ opacity: 1, y: 0 }} 
+        transition={{ duration: 0.8 }}
+        className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg"
+      >
+        <form onSubmit={handleSubmit}>
+          {/* Name Field */}
+          <div className="mb-6">
+            <label htmlFor="name" className="block text-xl font-semibold text-gray-700 mb-2">
+              Full Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              className="w-full p-4 border border-gray-300 rounded-lg text-lg focus:outline-none focus:border-green-500"
+            />
+          </div>
 
-    return (
-        <div className="max-w-lg mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
-            <h2 className="text-2xl font-bold text-center mb-6">Book an Appointment</h2>
-            {isSubmitted && <p className="text-green-500 text-center mb-4">Your appointment has been booked!</p>}
-            <form onSubmit={handleSubmit}>
-                {/* Username */}
-                <div className="mb-4">
-                    <label className="block text-gray-700" htmlFor="username">Username</label>
-                    <input
-                        type="text"
-                        id="username"
-                        name="username"
-                        value={formData.username}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        required
-                    />
-                </div>
+          {/* Email Field */}
+          <div className="mb-6">
+            <label htmlFor="email" className="block text-xl font-semibold text-gray-700 mb-2">
+              Email Address
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full p-4 border border-gray-300 rounded-lg text-lg focus:outline-none focus:border-green-500"
+            />
+          </div>
 
-                {/* Phone Number */}
-                <div className="mb-4">
-                    <label className="block text-gray-700" htmlFor="phone">Phone Number</label>
-                    <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        required
-                    />
-                </div>
+          {/* Phone Field */}
+          <div className="mb-6">
+            <label htmlFor="phone" className="block text-xl font-semibold text-gray-700 mb-2">
+              Phone Number
+            </label>
+            <input
+              type="text"
+              id="phone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+              className="w-full p-4 border border-gray-300 rounded-lg text-lg focus:outline-none focus:border-green-500"
+            />
+          </div>
 
-                {/* Date of Appointment */}
-                <div className="mb-4">
-                    <label className="block text-gray-700" htmlFor="appointmentDate">Appointment Date</label>
-                    <input
-                        type="date"
-                        id="appointmentDate"
-                        name="appointmentDate"
-                        value={formData.appointmentDate}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        required
-                    />
-                </div>
+          {/* Date Field */}
+          <div className="mb-6">
+            <label htmlFor="date" className="block text-xl font-semibold text-gray-700 mb-2">
+              Preferred Appointment Date
+            </label>
+            <input
+              type="date"
+              id="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              required
+              className="w-full p-4 border border-gray-300 rounded-lg text-lg focus:outline-none focus:border-green-500"
+            />
+          </div>
 
-                {/* Time of Appointment */}
-                <div className="mb-4">
-                    <label className="block text-gray-700" htmlFor="appointmentTime">Appointment Time</label>
-                    <input
-                        type="time"
-                        id="appointmentTime"
-                        name="appointmentTime"
-                        value={formData.appointmentTime}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        required
-                    />
-                </div>
+          {/* Submit Button */}
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            type="submit"
+            className="w-full bg-green-600 text-white py-3 rounded-lg text-lg font-semibold shadow-lg hover:bg-green-700 transition duration-300 transform"
+          >
+            Book Appointment
+          </motion.button>
+        </form>
+      </motion.div>
 
-                {/* Message */}
-                <div className="mb-4">
-                    <label className="block text-gray-700" htmlFor="message">Description (Optional)</label>
-                    <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Any specific details or requests"
-                    />
-                </div>
-
-                {/* Submit Button */}
-                <div className="flex justify-center">
-                    <button
-                        type="submit"
-                        className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
-                    >
-                        Book Appointment
-                    </button>
-                </div>
-            </form>
-        </div>
-    );
+      {/* Back to Home */}
+      <div className="mt-8 text-center">
+        <Link to="/" className="text-green-600 hover:text-green-700 text-lg font-semibold">
+          Go back to Home
+        </Link>
+      </div>
+    </div>
+  );
 };
 
-export default BookAppointmentPage;
+export default BookAppointment;

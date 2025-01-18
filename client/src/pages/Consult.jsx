@@ -58,11 +58,11 @@ const Consult = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6">
-      <div className="bg-white shadow-md rounded-lg w-full max-w-3xl">
+    <div className="min-h-screen bg-green-50 flex flex-col items-center p-6">
+      <div className="bg-white shadow-lg rounded-lg w-full max-w-3xl motion-safe:transition-all motion-safe:duration-300">
         {/* Chat Header */}
         <div className="p-4 border-b border-gray-300">
-          <h2 className="text-xl font-bold text-black text-center">LeafBot</h2>
+          <h2 className="text-xl font-bold text-green-600 text-center">AgriGuard 🌱</h2>
         </div>
 
         {/* Chat Messages */}
@@ -75,10 +75,10 @@ const Consult = () => {
               }`}
             >
               <span
-                className={`px-3 py-1 rounded-lg inline-block ${
+                className={`px-3 py-1 rounded-lg inline-block transform motion-safe:transition-transform motion-safe:duration-300 ${
                   msg.sender === "User"
-                    ? "bg-blue-500 text-white"
-                    : "bg-green-500 text-white"
+                    ? "bg-green-600 text-white"
+                    : "bg-green-400 text-white"
                 }`}
               >
                 <strong>{msg.sender}: </strong>
@@ -96,17 +96,17 @@ const Consult = () => {
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
             placeholder="Type your message..."
-            className="w-full p-2 border rounded mb-2"
+            className="w-full p-2 border border-green-600 rounded mb-2 focus:ring-green-300 focus:border-green-600"
           />
           <input
             type="file"
             accept="image/*"
             onChange={handleFileChange}
-            className="w-full p-2 border rounded mb-2"
+            className="w-full p-2 border border-green-600 rounded mb-2 focus:ring-green-300 focus:border-green-600"
           />
           <button
             onClick={sendMessage}
-            className="w-full bg-gray-400 text-black font-bold p-2 rounded hover:bg-white hover:text-black hover:border hover:border-black transition duration-300"
+            className="w-full bg-green-600 text-white font-bold p-2 rounded hover:bg-green-700 hover:scale-105 transition duration-300 ease-in-out"
           >
             Send
           </button>
