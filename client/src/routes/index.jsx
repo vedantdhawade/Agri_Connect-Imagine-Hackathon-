@@ -4,9 +4,10 @@ import App from "../App";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import BookAppointmentPage from "../pages/BookApointmentPage";
-import AboutUs from "../pages/Aboutus";
-import Scheduler from "../pages/Sheduler";
-
+import Aboutus from "../pages/Aboutus";
+import AdminHome from "../pages/AdminHome";
+import Sheduler from "../pages/Sheduler";
+import CropDetailsPage from "../components/CropDetailsPage";
 
 const router = createBrowserRouter([
   {
@@ -31,12 +32,27 @@ const router = createBrowserRouter([
       },
       {
         path: "about-us",
-        element: <AboutUs />,
+        element: <Aboutus />,
       },
       {
         path:"sheduler",
-        element:<Scheduler/>
+        element:<Sheduler/>
       },
+      {
+        path: "crop-details",
+        element: <CropDetailsPage />,
+      },
+    ],
+  },
+  {
+    path: "/admin",
+    element: <AdminHome />,
+    children: [
+      {
+        path: "dashboard",
+        element: <AdminHome />,
+      },
+     
     ],
   },
 ]);

@@ -1,6 +1,6 @@
 import  { useState } from "react";
 
-const FarmerScheduleForm = () => {
+const Sheduler = () => {
   const [formData, setFormData] = useState({
     farmerId: "F-2024-001",
     taskTitle: "",
@@ -132,4 +132,4 @@ const FarmerScheduleForm = () => {
   );
 };
 
-export default FarmerScheduleForm;
+export default Sheduler;
