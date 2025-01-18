@@ -5,11 +5,10 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import BookAppointmentPage from "../pages/BookApointmentPage";
 import Aboutus from "../pages/Aboutus";
-import Admin from "../layout/Admin";
 import AdminHome from "../pages/AdminHome";
+import Scheduler from "../pages/Scheduler";
 import Service from "../layout/Service";
 import CropCondition from "../components/CropCondition";
-import Scheduler from "../pages/Scheduler";
 import Consult from "../pages/Consult";
 
 const router = createBrowserRouter([
@@ -59,29 +58,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <Admin />,
+    element: <AdminHome />,
     children: [
       {
         path: "dashboard",
         element: <AdminHome />,
-      },
-    ],
-  },
-  {
-    path: "/services",
-    element: <Service />,
-    children: [
-      {
-        path: "crop-condition",
-        element: <CropCondition />,
-      },
-      {
-        path: "scheduler",
-        element: <Scheduler />,
-      },
-      {
-        path: "consult",
-        element: <Consult />,
       },
     ],
   },

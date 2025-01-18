@@ -1,46 +1,36 @@
-import React from "react";
+// AdminSidebar.jsx
+
 
 const AdminSidebar = () => {
   return (
-    <div className="flex h-screen">
-      <aside className="w-64 bg-white text-black flex flex-col">
-        <nav className="flex-grow">
-          <ul className="space-y-2 p-4">
-            <li>
-              <a
-                href="#dashboard"
-                className="block py-2 px-4 rounded-lg hover:bg-gray-700 hover:text-white"
-              >
-                Dashboard
-              </a>
-            </li>
-            <li>
-              <a
-                href="#appointments"
-                className="block py-2 px-4 rounded-lg hover:bg-gray-700 hover:text-white"
-              >
-                Appointments
-              </a>
-            </li>
-            <li>
-              <a
-                href="#users"
-                className="block py-2 px-4 rounded-lg hover:bg-gray-700 hover:text-white"
-              >
-                Users
-              </a>
-            </li>
-            <li>
-              <a
-                href="#settings"
-                className="block py-2 px-4 rounded-lg hover:bg-gray-700 hover:text-white"
-              >
-                Settings
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </aside>
+    <div className="w-64 bg-white shadow-md h-full">
+      <div className="p-4 border-b">
+        <h2 className="text-xl font-bold">LOGO</h2>
+      </div>
+      <nav className="p-4">
+        <ul>
+          <li className="mb-4">
+            <a href="/admin/dashboard" className="text-gray-700">
+              Dashboard
+            </a>
+          </li>
+          <li className="mb-4">
+            <a href="/admin/appointments" className="text-gray-700">
+              Appointments
+            </a>
+          </li>
+          <li className="mb-4">
+            <a href="/admin/users" className="text-gray-700">
+              Users
+            </a>
+          </li>
+          <li>
+            <a href="/admin/settings" className="text-gray-700">
+              Settings
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 };

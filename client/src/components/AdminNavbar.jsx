@@ -1,18 +1,11 @@
-import React from "react";
-
+// AdminNavbar.jsx
+// This is the navbar component for the admin dashboard. It displays the profile name and verification status.
 const AdminNavbar = () => {
   return (
-    <nav className="w-full bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
-      <div className="flex items-center">
-        <h1 className="text-xl font-bold text-black">Admin Logo</h1>
-      </div>
-
-      <div>
-        <h1 className="text-lg md:text-xl font-medium text-gray-800">
-          Dashboard
-        </h1>
-      </div>
-    </nav>
+    <div className="bg-white shadow-md p-4 flex justify-between items-center">
+      <h2 className="text-lg font-bold">Profile</h2>
+      <span className="text-green-600 font-semibold">Verified</span>
+    </div>
   );
 };
 

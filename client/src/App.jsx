@@ -9,8 +9,8 @@ function App() {
     <>
       <Navbar />
       <Outlet />
-      <Chatbot />
-      <Footer />
+      <Chatbot/>
+      <Footer/>
     </>
   );
 }
