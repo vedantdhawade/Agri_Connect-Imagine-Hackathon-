@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-const Login = () => {
+const Register = () => {
   const [formdata, setformdata] = useState({
+    username: "",
     email: "",
     password: "",
   });
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("Email:", formdata.email);
+    console.log("username:", formdata.username);
+    console.log("email : ", formdata.email);
     console.log("Password:", formdata.password);
     setformdata({
       email: "",
+      username: "",
       password: "",
     });
   };
@@ -31,10 +34,10 @@ const Login = () => {
       <div className="flex flex-col justify-center items-center w-full md:w-1/2 bg-gradient-to-r  p-8">
         <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
           <h2 className="text-4xl font-extrabold text-gray-800 mb-6 text-center">
-            Welcome Back
+            Welcome User
           </h2>
           <p className="text-gray-600 text-center mb-6">
-            Login to your account and start exploring.
+            Register to your account and start exploring.
           </p>
           <form onSubmit={handleLogin}>
             {/* Email Input */}
@@ -57,6 +60,28 @@ const Login = () => {
                 }
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                htmlFor="email"
+                className="block text-gray-700 text-sm font-semibold mb-2"
+              >
+                Username
+              </label>
+              <input
+                type="text"
+                id="username"
+                value={formdata.username}
+                onChange={(e) =>
+                  setformdata({
+                    ...formdata,
+                    username: e.target.value,
+                  })
+                }
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                placeholder="Enter your Username"
                 required
               />
             </div>
@@ -91,7 +116,7 @@ const Login = () => {
                 type="submit"
                 className="w-full bg-indigo-500 text-white py-3 rounded-lg font-bold text-lg hover:bg-indigo-600 transition-all duration-300"
               >
-                Login
+                Register
               </button>
             </div>
           </form>
@@ -99,19 +124,10 @@ const Login = () => {
           {/* Additional Links */}
           <div className="text-center mt-4">
             <p className="text-gray-600">
-              Don't have an account?{" "}
-              <Link to={"/signup"} className="text-indigo-500 hover:underline">
-                Sign Up
+              Have an account?{" "}
+              <Link to={"/login"} className="text-indigo-500 hover:underline">
+                Login
               </Link>
-            </p>
-            <p className="text-gray-600 mt-2">
-              Forgot your password?
-              <a
-                href="/reset-password"
-                className="text-indigo-500 hover:underline"
-              >
-                Reset it here
-              </a>
             </p>
           </div>
         </div>
@@ -120,4 +136,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
