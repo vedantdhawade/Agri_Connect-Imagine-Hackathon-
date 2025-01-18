@@ -3,6 +3,10 @@ import Home from "../pages/Home";
 import App from "../App";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import BookAppointmentPage from "../pages/BookApointmentPage";
+import Aboutus from "../pages/Aboutus";
+import Admin from "../layout/Admin";
+import AdminHome from "../pages/AdminHome";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +31,7 @@ const router = createBrowserRouter([
       },
       {
         path: "about-us",
-        element: <AboutUs />,
+        element: <Aboutus />,
       },
     ],
   },
