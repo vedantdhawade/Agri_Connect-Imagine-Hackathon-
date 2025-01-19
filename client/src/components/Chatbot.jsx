@@ -63,7 +63,8 @@ const Chatbot = () => {
 
     // Format response: Replace *** with bold text and add structure
     const formattedReply = reply
-      .replace(/\*\*\*(.*?)\*\*\*/g, "<strong>$1</strong>") // Replace ***text*** with <strong>text</strong>
+      .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") 
+      .replace(/\*(.*?)\*/g, "<strong>$1</strong>") // Replace **text** with <strong>text</strong>
       .split("\n") // Split by lines for better structuring
       .map((line) => `<p>${line}</p>`) // Wrap each line in a paragraph
       .join("");

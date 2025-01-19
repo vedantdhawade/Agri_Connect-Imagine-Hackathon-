@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useUser } from "../store/auth"; // Import the useUser hook
-import { Link, useNavigate } from "react-router-dom"; // useNavigate for navigation after login
+import { Link } from "react-router-dom"; // useNavigate for navigation after login
 
 const Login = () => {
   const { signin } = useUser(); // Access the login function from the context
@@ -113,7 +113,7 @@ const Login = () => {
           {/* Additional Links */}
           <div className="text-center mt-4">
             <p className="text-green-600">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link to={"/signup"} className="text-green-500 hover:underline">
                 Sign Up
               </Link>

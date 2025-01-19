@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from 'framer-motion';
 import Cookies from "js-cookie";
@@ -35,13 +34,18 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div className="hidden md:flex space-x-8">
-          {["Home", "About Us", "Services", "Help"].map((item, index) => (
+          {[
+            { name: "Home", path: "/" },
+            { name: "About Us", path: "/about-us" },
+            { name: "Services", path: "/services" },
+            { name: "Help", path: "/help" },
+          ].map((item, index) => (
             <motion.div key={index} whileHover={{ scale: 1.1 }}>
               <Link
-                to={`/${item.toLowerCase().replace(" ", "-")}`}
+                to={item.path}
                 className="text-lg font-medium hover:text-green-300 transition duration-300"
               >
-                {item}
+                {item.name}
               </Link>
             </motion.div>
           ))}
@@ -95,28 +99,25 @@ const Navbar = () => {
           </motion.button>
 
           {/* Login/Logout Button */}
-          {
-            token ? (
-              <motion.div whileHover={{ scale: 1.1 }}>
-                <Link
-                  onClick={handleLogout}
-                  className="bg-white text-green-700 px-4 py-2 rounded-full font-semibold hover:bg-green-300 transition duration-300"
-                >
-                  Logout
-                </Link>
-              </motion.div>
-            ) : (
-              <motion.div whileHover={{ scale: 1.1 }}>
-                <Link
-                  to="/login"
-                  className="bg-white text-green-700 px-4 py-2 rounded-full font-semibold hover:bg-green-300 transition duration-300"
-                >
-                  Login
-                </Link>
-              </motion.div>
-            )
-          }
-          
+          {token ? (
+            <motion.div whileHover={{ scale: 1.1 }}>
+              <Link
+                onClick={handleLogout}
+                className="bg-white text-green-700 px-4 py-2 rounded-full font-semibold hover:bg-green-300 transition duration-300"
+              >
+                Logout
+              </Link>
+            </motion.div>
+          ) : (
+            <motion.div whileHover={{ scale: 1.1 }}>
+              <Link
+                to="/login"
+                className="bg-white text-green-700 px-4 py-2 rounded-full font-semibold hover:bg-green-300 transition duration-300"
+              >
+                Login
+              </Link>
+            </motion.div>
+          )}
         </div>
       </div>
     </motion.nav>

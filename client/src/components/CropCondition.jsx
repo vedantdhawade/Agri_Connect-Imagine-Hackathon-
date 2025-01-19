@@ -6,6 +6,7 @@ const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-
 
 const CropCondition = () => {
   const [score, setScore] = useState(0);
+  // eslint-disable-next-line no-unused-vars
   const [userInput, setUserInput] = useState(
     "Rate this image at a scale of 1 to 10 and give me the crop health score only as output (integer)."
   );

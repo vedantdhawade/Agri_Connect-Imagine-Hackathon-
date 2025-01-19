@@ -24,11 +24,13 @@ const Home = () => {
             Get expert guidance on your farming needs and book an appointment today!
           </p>
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-48 bg-green-600 text-white py-3 rounded-lg text-lg font-semibold shadow-lg hover:bg-green-700 transition duration-300 transform"
+            
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="w-48 bg-green-600 text-white py-3 rounded-lg text-lg font-semibold shadow-lg hover:bg-green-700 transition duration-300"
           >
-            <Link to="/book-appointment">Book Appointment</Link>
+            <Link to='book-appointment'>  Book Appointment</Link>
+          
           </motion.button>
         </div>
 
@@ -51,7 +53,7 @@ const Home = () => {
       <div className="mb-12 text-center">
         <h2 className="text-4xl font-bold text-green-800 mb-8">🌱 Key Features</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[ 
+          {[
             { title: "Expert Advice", image: "ai.svg", desc: "Get personalized guidance from agricultural experts." },
             { title: "Pest Control", image: "rec.svg", desc: "Protect your crops with proven pest control methods." },
             { title: "Crop Monitoring", image: "read.svg", desc: "Track crop health and optimize yield efficiently." }
@@ -75,7 +77,7 @@ const Home = () => {
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold text-green-800 mb-8">🦠 Crop Diseases</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {[ 
+          {[
             { title: "Downy Mildew", image: "leaf.png", desc: "Affects cucumbers, grapes, and more, causing stunted growth." },
             { title: "Tomato Virus", image: "tomato.png", desc: "Severely damages tomatoes, leading to deformed leaves." },
             { title: "Rice Yellow Drift", image: "rice.png", desc: "Viral disease causing yellow leaves and reduced yield." },
@@ -98,7 +100,7 @@ const Home = () => {
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold text-green-800 mb-8">🎉 Success Stories</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[ 
+          {[
             { title: "Thriving Tomato Plants", image: "farm.jpg", desc: "Tomato plants transformed with AgriConnect's support." },
             { title: "Flourishing Rice Crops", image: "cropfarm.jpg", desc: "Rice crops now healthier with increased yield." },
             { title: "Lush Green Crops", image: "greenfarm.jpg", desc: "Farmers achieved lush, healthy crops with our guidance." }
@@ -126,7 +128,7 @@ const Home = () => {
         >
           <h2 className="text-3xl font-bold text-center text-green-800 mb-6">🌍 Impact & Results</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[ 
+            {[
               { title: "50,000+ Diagnoses", color: "blue", desc: "Identified key agricultural issues for thousands of farmers." },
               { title: "1,000+ Farmers Engaged", color: "green", desc: "Provided personalized guidance & recommendations." },
               { title: "95% Accuracy", color: "purple", desc: "Achieved high accuracy in diagnosing crop diseases." }

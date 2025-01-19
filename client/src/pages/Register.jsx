@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify"; // Importing toast
 import "react-toastify/dist/ReactToastify.css"; // Import the Toastify styles
@@ -45,6 +45,7 @@ const Register = () => {
       } else {
         toast.error(data.message || "Registration failed!"); // Error toast
       }
+    // eslint-disable-next-line no-unused-vars
     } catch (error) {
       toast.error("Network error, please try again later!"); // Network error toast
     } finally {
