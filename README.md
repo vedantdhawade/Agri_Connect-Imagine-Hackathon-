@@ -80,7 +80,7 @@ AgriConnect was developed as part of the **Imagine Hackathon 2025**, where we ai
 *Upload crop images to predict diseases instantly.*
 
 ### **Video Consultation**
-![Video Consultation](https://via.placeholder.com/800x400?text=Video+Consultation+Screenshot)  
+![Video Consultation](https://github.com/vedantdhawade/Agri_Connect-Imagine-Hackathon-/blob/main/Screenshot%202025-01-19%20132651.png?raw=true)  
 *Connect with agricultural experts for personalized advice.*
 
 ### **Task Scheduler**
