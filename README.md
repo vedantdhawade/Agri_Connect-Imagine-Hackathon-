@@ -72,7 +72,7 @@ AgriConnect was developed as part of the **Imagine Hackathon 2025**, where we ai
 ## **📸 Screenshots**
 
 ### **Home Page**
-![Home Page](https://via.placeholder.com/800x400?text=Home+Page+Screenshot)  
+![Home Page](https://github.com/vedantdhawade/Agri_Connect-Imagine-Hackathon-/blob/main/Screenshot%202025-01-19%20132521.png?raw=true)  
 *A welcoming interface showcasing core features.*
 
 ### **Crop Health Prediction**
