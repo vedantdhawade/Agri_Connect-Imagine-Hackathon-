@@ -1,52 +1,99 @@
-AgriConnect 🌿
+# **AgriConnect - Revolutionizing Agriculture with Technology** 🌾💡
 
-AgriConnect is a web-based application designed to facilitate agricultural knowledge sharing and assistance. The platform features a responsive Navbar, a chatbot for plant disease detection, and other helpful tools for farmers and agriculture enthusiasts.
+![Imagine Hackathon](https://img.shields.io/badge/Imagine-Hackathon-orange)  
+![License](https://img.shields.io/badge/License-MIT-green)  
+![Tech Stack](https://img.shields.io/badge/Tech%20Stack-React%20%7C%20Node.js%20%7C%20Python-blue)
 
-Features
+AgriConnect is an integrated platform designed to empower farmers with the latest technology. By combining AI-driven crop health prediction, digital diagnostics, expert consultations, and task scheduling, AgriConnect helps farmers improve productivity, reduce costs, and achieve better yields.
 
-Navbar
+---
 
-Responsive Design: A navigation bar optimized for various screen sizes.
+## **Table of Contents**
+- [🚀 Features](#features)
+- [🎯 Problem Statement](#problem-statement)
+- [🏆 Hackathon Journey](#hackathon-journey)
+- [🛠️ Tech Stack](#tech-stack)
+- [📸 Screenshots](#screenshots)
+- [📂 Installation and Setup](#installation-and-setup)
+- [🤝 Contributing](#contributing)
+- [📜 License](#license)
+- [📞 Contact](#contact)
 
-Dynamic Links: Links to Home, About Us, Services, and Help.
+---
 
-Action Buttons:
+## **🚀 Features**
+1. **AI-Driven Crop Health Prediction** 🌱
+   - Analyze crop health and predict potential diseases.
+   - Provide personalized remediation steps.
+2. **Digital Diagnostics** 🩺
+   - Upload crop images for real-time disease detection.
+   - Get instant feedback and recommendations.
+3. **One-on-One Video Consultations** 📹
+   - Connect with agricultural experts for personalized advice.
+   - Multilingual support for localized communication.
+4. **Task Scheduler** 📅
+   - Plan, schedule, and manage agricultural tasks.
+   - Set reminders for irrigation, fertilization, and pest control.
+5. **Data Visualization** 📊
+   - Gain insights into crop health trends, task completion rates, and more.
 
-Search functionality (icon-based).
+---
 
-Notification section with a red badge for unread notifications.
+## **🎯 Problem Statement**
+Farmers face significant challenges such as:
+- Difficulty diagnosing crop diseases early.
+- Limited access to timely and expert advice.
+- Inefficient management of farming tasks.
 
-Login/Logout button based on authentication state.
+**AgriConnect** addresses these challenges by providing an end-to-end solution that combines advanced technology with actionable insights, enabling farmers to make informed decisions.
 
-Image Slider: Displays a carousel of three images using React Slick.
+---
 
-Chatbot
+## **🏆 Hackathon Journey**
+AgriConnect was developed as part of the **Imagine Hackathon 2025**, where we aimed to create a solution that drives positive change in agriculture.
 
-AI-Powered Chat: A chatbot for detecting plant diseases based on user queries and uploaded images.
+- **Hackathon Highlights**:
+  - Brainstormed and validated the idea with mentors.
+  - Built and tested the AI-powered diagnostic system within 36 hours.
+  - Successfully presented a working prototype to judges.
 
-Formatted Responses: AI responses are structured with bold text and proper HTML formatting.
+---
 
-Loading State: Displays a loading indicator during processing.
+## **🛠️ Tech Stack**
+- **Frontend**: React, Tailwind CSS
+- **Backend**: Node.js, Express.js
+- **AI Models**: TensorFlow.js, Python (Flask)
+- **Database**: MongoDB
+- **Video Integration**: WebRTC
+- **Deployment**: Vercel (Frontend), Render (Backend)
 
-Disease Treatment Suggestions: Provides actionable advice for plant disease management.
+---
 
-Technologies Used
+## **📸 Screenshots**
 
-Frontend:
+### **Home Page**
+![Home Page](https://via.placeholder.com/800x400?text=Home+Page+Screenshot)  
+*A welcoming interface showcasing core features.*
 
-React.js
+### **Crop Health Prediction**
+![Crop Prediction](https://via.placeholder.com/800x400?text=Crop+Prediction+Screenshot)  
+*Upload crop images to predict diseases instantly.*
 
-Tailwind CSS for styling
+### **Video Consultation**
+![Video Consultation](https://via.placeholder.com/800x400?text=Video+Consultation+Screenshot)  
+*Connect with agricultural experts for personalized advice.*
 
-Framer Motion for animations
+### **Task Scheduler**
+![Task Scheduler](https://via.placeholder.com/800x400?text=Task+Scheduler+Screenshot)  
+*Efficiently plan and manage agricultural tasks.*
 
-React Slick for the image slider
+---
 
-Authentication:
+## **📂 Installation and Setup**
 
-Cookies for storing authentication tokens
+Follow these steps to run the project locally:
 
-Backend:
-
-Google Gemini API (Generative AI for chatbot functionality)
-
+### **1. Clone the Repository**
+```bash
+git clone https://github.com/yourusername/agriconnect.git
+cd agriconnect
