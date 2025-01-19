@@ -65,7 +65,7 @@ export const UserProvider = ({ children }) => {
         Cookies.set("userId", data.user.id, { expires: 7 }); // Set user ID with 7-day expiry
         
         toast.success("Login successful!"); // Show success toast
-        navigate("/home"); // Navigate after successful sign-in
+        navigate("/"); // Navigate after successful sign-in
       } else {
         setError(data.message || "Signin failed");
         toast.error(data.message || "Signin failed"); // Show error toast
