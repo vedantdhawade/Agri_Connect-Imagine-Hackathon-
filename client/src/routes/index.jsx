@@ -10,6 +10,9 @@ import Scheduler from "../pages/Scheduler";
 import Service from "../layout/Service";
 import CropCondition from "../components/CropCondition";
 import Consult from "../pages/Consult";
+import Index from "../components/Room";
+import AdminLogin from "../pages/AdminLogin";
+import Adminappoint from "../pages/Adminappoint";
 
 const router = createBrowserRouter([
   {
@@ -33,9 +36,14 @@ const router = createBrowserRouter([
         element: <BookAppointmentPage />,
       },
       {
+        path: "/room/:RoomId",
+        element: <Index />,
+      },
+      {
         path: "about-us",
         element: <Aboutus />,
       },
+
       {
         path: "/services",
         element: <Service />,
@@ -57,14 +65,20 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: "/admin/login",
+    element: <AdminLogin />, // Login page
+  },
+  {
     path: "/admin",
-    element: <AdminHome />,
-    children: [
-      {
-        path: "dashboard",
-        element: <AdminHome />,
-      },
-    ],
+    element: <AdminHome />, // Admin home page
+  },
+  {
+    path: "/admin/dashboard",
+    element: <AdminHome />, // Admin dashboard page
+  },
+  {
+    path: "/admin/appointment",
+    element: <Adminappoint />, // Admin dashboard page
   },
 ]);
 

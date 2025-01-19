@@ -1,14 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  // Function to handle logout
+  const handleLogout = () => {
+    Cookies.remove("token"); // Remove the token from cookies
+    navigate("/login"); // Redirect to login page
+  };
+
+  // Check if the token exists
+  const token = Cookies.get("token");
+
   return (
-    <nav className=" shadow-md ">
+    <nav className="shadow-md">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo Section */}
         <div className="flex items-center space-x-4">
-          <span className="text-black text-2xl font-bold tracking-wide">
-            AgriConnect
-          </span>
+          <Link to="/home">
+            <span className="text-black text-2xl font-bold tracking-wide">
+              AgriConnect
+            </span>
+          </Link>
         </div>
 
         {/* Navigation Links */}
@@ -32,7 +47,7 @@ const Navbar = () => {
             Services
           </Link>
           <Link
-            to={"/home"}
+            to={"/help"}
             className="text-black text-lg hover:text-gray-900 transition duration-300"
           >
             Help
@@ -69,7 +84,7 @@ const Navbar = () => {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 "
+              className="h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -84,13 +99,22 @@ const Navbar = () => {
             <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
           </button>
 
-          {/* Login Button */}
-          <Link
-            to={"/login"}
-            className="bg-black text-white px-4 py-2 rounded-full font-semibold hover:bg-gray-100 hover:text-black transition duration-300"
-          >
-            Login
-          </Link>
+          {/* Conditional Render: Login or Logout */}
+          {token ? (
+            <button
+              onClick={handleLogout}
+              className="bg-black text-white px-4 py-2 rounded-full font-semibold hover:bg-gray-100 hover:text-black transition duration-300"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              to={"/login"}
+              className="bg-black text-white px-4 py-2 rounded-full font-semibold hover:bg-gray-100 hover:text-black transition duration-300"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </nav>

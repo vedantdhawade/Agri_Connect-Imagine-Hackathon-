@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { useUser } from "../store/auth"; // Import the useUser hook
 import { Link, useNavigate } from "react-router-dom"; // useNavigate for navigation after login
+import Cookies from "js-cookie"; // Assuming you use js-cookie for token handling
+import { toast } from "react-toastify"; // Assuming you are using react-toastify for notifications
 
-const Login = () => {
-  const { signin } = useUser(); // Access the login function from the context
+const AdminLogin = () => {
   const [formdata, setformdata] = useState({
     email: "",
     password: "",
   });
   const [loading, setLoading] = useState(false); // Loading state
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -17,10 +18,46 @@ const Login = () => {
 
     setLoading(true); // Show loader when API is hit
     try {
-      // Call the login function from context to update global state
-      await signin(formdata.email, formdata.password);
+      const response = await fetch(
+        "https://hackathon-back.onrender.com/auth/signin",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: formdata.email,
+            password: formdata.password,
+          }),
+        }
+      );
+
+      const data = await response.json();
+      console.log("Received Data:", data); // Log the received response
+
+      navigate("/admin")
+      if (response.ok) {
+        if (data.user && data.user.role !== "admin") {
+          toast.error("Only admin can log in");
+          return;
+        }
+
+        // Set token and user ID in cookies
+        Cookies.set("tokken", data.token, { expires: 7 });
+        Cookies.set("userId", data.user.id, { expires: 7 });
+        console.log("Token and User ID Set:", data.token, data.user.id); // Verify if cookies are set
+
+        // Show success toast
+        toast.success("Login successful!");
+
+        // Navigate to /admin after successful login
+        navigate("/admin");
+      } else {
+        toast.error(data.message || "Login failed. Please try again.");
+      }
     } catch (error) {
       console.error("Login failed:", error);
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setLoading(false); // Hide loader after API call completes
     }
@@ -135,4 +172,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default AdminLogin;

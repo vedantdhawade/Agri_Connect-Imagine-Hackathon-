@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -18,9 +19,11 @@ const Home = () => {
             Book an appointment with our experts to get tailored advice on crop
             care, pest management, and more.
           </p>
-          <button className="w-48 bg-blue-500 text-white py-3 rounded-lg text-lg font-semibold hover:bg-blue-600 transition duration-300">
-            Book Appointment
-          </button>
+          <Link to="/book-appointment">
+            <button className="w-48 bg-blue-500 text-white py-3 rounded-lg text-lg font-semibold hover:bg-blue-600 transition duration-300">
+              Book Appointment
+            </button>
+          </Link>
         </div>
 
         {/* Right Section: Image */}

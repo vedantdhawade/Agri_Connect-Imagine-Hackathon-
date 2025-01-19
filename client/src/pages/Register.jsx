@@ -1,22 +1,55 @@
-import  { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify"; // Importing toast
+import "react-toastify/dist/ReactToastify.css"; // Import the Toastify styles
+
 const Register = () => {
   const [formdata, setformdata] = useState({
     username: "",
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false); // Add loading state
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  // Handle Register form submission
+  const handleRegister = async (e) => {
     e.preventDefault();
-    console.log("username:", formdata.username);
-    console.log("email : ", formdata.email);
-    console.log("Password:", formdata.password);
-    setformdata({
-      email: "",
-      username: "",
-      password: "",
-    });
+    setLoading(true); // Set loading to true when API is hit
+
+    try {
+      const response = await fetch(
+        "https://hackathon-back.onrender.com/auth/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: formdata.username,
+            email: formdata.email,
+            password: formdata.password,
+          }),
+        }
+      );
+
+      const data = await response.json();
+      if (response.ok) {
+        toast.success("Registration Successful!"); // Success toast
+        setformdata({
+          email: "",
+          username: "",
+          password: "",
+        });
+        navigate("/login"); // Navigate to login page after successful registration
+      } else {
+        toast.error(data.message || "Registration failed!"); // Error toast
+      }
+    } catch (error) {
+      toast.error("Network error, please try again later!"); // Network error toast
+    } finally {
+      setLoading(false); // Set loading to false after API call
+    }
   };
 
   return (
@@ -31,7 +64,7 @@ const Register = () => {
       </div>
 
       {/* Right Side Form */}
-      <div className="flex flex-col justify-center items-center w-full md:w-1/2 bg-gradient-to-r  p-8">
+      <div className="flex flex-col justify-center items-center w-full md:w-1/2 bg-gradient-to-r p-8">
         <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
           <h2 className="text-4xl font-extrabold text-gray-800 mb-6 text-center">
             Welcome User
@@ -39,7 +72,7 @@ const Register = () => {
           <p className="text-gray-600 text-center mb-6">
             Register to your account and start exploring.
           </p>
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleRegister}>
             {/* Email Input */}
             <div className="mb-4">
               <label
@@ -65,7 +98,7 @@ const Register = () => {
             </div>
             <div className="mb-4">
               <label
-                htmlFor="email"
+                htmlFor="username"
                 className="block text-gray-700 text-sm font-semibold mb-2"
               >
                 Username
@@ -110,13 +143,18 @@ const Register = () => {
               />
             </div>
 
-            {/* Login Button */}
+            {/* Register Button */}
             <div className="mb-4">
               <button
                 type="submit"
                 className="w-full bg-indigo-500 text-white py-3 rounded-lg font-bold text-lg hover:bg-indigo-600 transition-all duration-300"
+                disabled={loading} // Disable button while loading
               >
-                Register
+                {loading ? (
+                  <span className="loading loading-dots loading-md"></span>
+                ) : (
+                  "Register"
+                )}
               </button>
             </div>
           </form>

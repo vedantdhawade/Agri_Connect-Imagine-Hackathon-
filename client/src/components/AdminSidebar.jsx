@@ -1,5 +1,7 @@
 // AdminSidebar.jsx
 
+import { Link } from "react-router-dom";
+
 
 const AdminSidebar = () => {
   return (
@@ -15,18 +17,13 @@ const AdminSidebar = () => {
             </a>
           </li>
           <li className="mb-4">
-            <a href="/admin/appointments" className="text-gray-700">
+            <Link to="/admin/appointment" className="text-gray-700">
               Appointments
-            </a>
+            </Link>
           </li>
           <li className="mb-4">
             <a href="/admin/users" className="text-gray-700">
               Users
-            </a>
-          </li>
-          <li>
-            <a href="/admin/settings" className="text-gray-700">
-              Settings
             </a>
           </li>
         </ul>

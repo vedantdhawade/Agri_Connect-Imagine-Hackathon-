@@ -1,8 +1,62 @@
-// AdminDashboardPage.jsx
+import React, { useState, useEffect } from "react";
 import AdminSidebar from "../components/AdminSidebar";
 import AdminNavbar from "../components/AdminNavbar";
+import Cookies from "js-cookie"; // Import the js-cookie library
 
 const AdminHome = () => {
+  const [appointments, setAppointments] = useState([]);
+
+  // Get the userId from cookies
+  const userId = Cookies.get("userId");
+
+  // Function to fetch appointments
+  useEffect(() => {
+    fetch("https://hackathon-back.onrender.com/api/appointments")
+      .then((response) => response.json())
+      .then((data) => setAppointments(data))
+      .catch((error) => console.error("Error fetching appointments:", error));
+  }, []);
+
+  // Function to handle the action (Accept/Reject)
+  const handleAction = (appointmentId, action) => {
+    if (!userId) {
+      console.error("User ID not found in cookies.");
+      return;
+    }
+
+    // Find the appointment data from the state
+    const appointment = appointments.find((appt) => appt._id === appointmentId);
+
+    if (appointment) {
+      // Send the PUT request with all required fields
+      fetch(
+        `https://hackathon-back.onrender.com/api/appointments/${appointmentId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId, // Send userId from cookies in the request body
+            status: action,
+          }),
+        }
+      )
+        .then((response) => response.json())
+        .then((updatedAppointment) => {
+          // Update the appointment list with the updated status
+          setAppointments((prevAppointments) =>
+            prevAppointments.map((appointment) =>
+              appointment._id === appointmentId
+                ? { ...appointment, status: action }
+                : appointment
+            )
+          );
+        })
+        .catch((error) => console.error("Error updating appointment:", error));
+    }
+  };
+
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
@@ -17,41 +71,12 @@ const AdminHome = () => {
         <div className="p-6">
           <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
 
-          {/* Statistics Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-            <div className="bg-white shadow-md rounded-lg p-4 text-center">
-              <h3 className="text-gray-500">Total Appointments</h3>
-              <p className="text-3xl font-bold">248</p>
-            </div>
-            <div className="bg-white shadow-md rounded-lg p-4 text-center">
-              <h3 className="text-gray-500">Pending Requests</h3>
-              <p className="text-3xl font-bold">23</p>
-            </div>
-            <div className="bg-white shadow-md rounded-lg p-4 text-center">
-              <h3 className="text-gray-500">Today's Appointments</h3>
-              <p className="text-3xl font-bold">12</p>
-            </div>
-            <div className="bg-white shadow-md rounded-lg p-4 text-center">
-              <h3 className="text-gray-500">Rejected Requests</h3>
-              <p className="text-3xl font-bold">8</p>
-            </div>
-          </div>
-
           {/* Appointment Requests Table */}
           <div className="bg-white shadow-md rounded-lg p-6">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-semibold text-gray-800">
                 Appointment Requests
               </h2>
-              <div>
-                <select
-                  className="border-gray-300 rounded-lg shadow-sm focus:ring-blue-500"
-                >
-                  <option value="all">All Status</option>
-                  <option value="pending">Pending</option>
-                  <option value="accepted">Accepted</option>
-                </select>
-              </div>
             </div>
 
             <table className="w-full border-collapse border border-gray-200">
@@ -65,29 +90,53 @@ const AdminHome = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="p-3">Michael Johnson</td>
-                  <td className="p-3">Tomatoes (Greenhouse)</td>
-                  <td className="p-3">Oct 12, 2023, 10:30 AM</td>
-                  <td className="p-3">
-                    <span className="text-yellow-600">Pending</span>
-                  </td>
-                  <td className="p-3">
-                    <button className="text-green-600 mr-2">Accept</button>
-                    <button className="text-red-600">Reject</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-3">Sarah Williams</td>
-                  <td className="p-3">Wheat (Field Crop)</td>
-                  <td className="p-3">Oct 12, 2023, 2:00 PM</td>
-                  <td className="p-3">
-                    <span className="text-green-600">Accepted</span>
-                  </td>
-                  <td className="p-3">
-                    <button className="text-blue-600">View Details</button>
-                  </td>
-                </tr>
+                {appointments.map((appointment) => (
+                  <tr key={appointment._id}>
+                    <td className="p-3">{appointment.username}</td>
+                    <td className="p-3">{appointment.description}</td>
+                    <td className="p-3">
+                      {new Date(appointment.date).toLocaleString()}
+                    </td>
+                    <td className="p-3">
+                      <span
+                        className={`${
+                          appointment.status === "pending"
+                            ? "text-yellow-600"
+                            : appointment.status === "accepted"
+                            ? "text-green-600"
+                            : "text-red-600"
+                        }`}
+                      >
+                        {appointment.status}
+                      </span>
+                    </td>
+                    <td className="p-3">
+                      {appointment.status === "pending" && (
+                        <>
+                          <button
+                            className="text-green-600 mr-2"
+                            onClick={() =>
+                              handleAction(appointment._id, "confirmed")
+                            }
+                          >
+                            Accept
+                          </button>
+                          <button
+                            className="text-red-600"
+                            onClick={() =>
+                              handleAction(appointment._id, "rejected")
+                            }
+                          >
+                            Reject
+                          </button>
+                        </>
+                      )}
+                      {appointment.status === "accepted" && (
+                        <button className="text-blue-600">View Details</button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
 
