@@ -84,7 +84,7 @@ AgriConnect was developed as part of the **Imagine Hackathon 2025**, where we ai
 *Connect with agricultural experts for personalized advice.*
 
 ### **Task Scheduler**
-![Task Scheduler](https://via.placeholder.com/800x400?text=Task+Scheduler+Screenshot)  
+![Task Scheduler](https://github.com/vedantdhawade/Agri_Connect-Imagine-Hackathon-/blob/main/Screenshot%202025-01-19%20132708.png?raw=true)  
 *Efficiently plan and manage agricultural tasks.*
 
 ---
