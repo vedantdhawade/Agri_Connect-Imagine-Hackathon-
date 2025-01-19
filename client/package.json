@@ -12,6 +12,7 @@
   "dependencies": {
     "@zegocloud/zego-uikit-prebuilt": "^2.14.1",
     "axios": "^1.7.9",
+    "framer-motion": "^11.18.1",
     "js-cookie": "^3.0.5",
     "nodemon": "^3.1.9",
     "react": "^18.3.1",

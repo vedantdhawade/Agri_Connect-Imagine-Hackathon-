@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { motion } from 'framer-motion';
 import Cookies from "js-cookie";
 
 const Navbar = () => {
@@ -15,55 +16,48 @@ const Navbar = () => {
   const token = Cookies.get("token");
 
   return (
-    <nav className="shadow-md">
+    <motion.nav
+      initial={{ opacity: 0, y: -30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="bg-gradient-to-r from-green-600 to-green-800 text-white sticky top-0 shadow-lg z-50"
+    >
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo Section */}
-        <div className="flex items-center space-x-4">
-          <Link to="/home">
-            <span className="text-black text-2xl font-bold tracking-wide">
-              AgriConnect
-            </span>
-          </Link>
-        </div>
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          className="flex items-center space-x-4"
+        >
+          <span className="text-2xl font-bold tracking-wide">
+            AgriConnect 🌿
+          </span>
+        </motion.div>
 
         {/* Navigation Links */}
         <div className="hidden md:flex space-x-8">
-          <Link
-            to={"/home"}
-            className="text-black text-lg hover:text-gray-900 transition duration-300"
-          >
-            Home
-          </Link>
-          <Link
-            to={"/about-us"}
-            className="text-black text-lg hover:text-gray-900 transition duration-300"
-          >
-            About Us
-          </Link>
-          <Link
-            to={"/services"}
-            className="text-black text-lg hover:text-gray-900 transition duration-300"
-          >
-            Services
-          </Link>
-          <Link
-            to={"/help"}
-            className="text-black text-lg hover:text-gray-900 transition duration-300"
-          >
-            Help
-          </Link>
+          {["Home", "About Us", "Services", "Help"].map((item, index) => (
+            <motion.div key={index} whileHover={{ scale: 1.1 }}>
+              <Link
+                to={`/${item.toLowerCase().replace(" ", "-")}`}
+                className="text-lg font-medium hover:text-green-300 transition duration-300"
+              >
+                {item}
+              </Link>
+            </motion.div>
+          ))}
         </div>
 
         {/* Action Buttons */}
         <div className="flex items-center space-x-4">
           {/* Search Icon */}
-          <button
-            className="text-black hover:text-gray-200 hover:bg-black hover:rounded-full p-2 transition duration-300"
+          <motion.button
+            whileHover={{ scale: 1.2 }}
+            className="p-2 rounded-full transition duration-300"
             aria-label="Search"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
+              className="h-6 w-6 text-white hover:text-green-300"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -75,16 +69,17 @@ const Navbar = () => {
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               />
             </svg>
-          </button>
+          </motion.button>
 
           {/* Notification Icon */}
-          <button
-            className="relative text-black hover:text-gray-200 hover:bg-black hover:rounded-full p-2 transition duration-300"
+          <motion.button
+            whileHover={{ scale: 1.2 }}
+            className="relative p-2 rounded-full transition duration-300"
             aria-label="Notifications"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
+              className="h-6 w-6 text-white hover:text-green-300"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -97,27 +92,34 @@ const Navbar = () => {
               />
             </svg>
             <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
-          </button>
+          </motion.button>
 
-          {/* Conditional Render: Login or Logout */}
-          {token ? (
-            <button
-              onClick={handleLogout}
-              className="bg-black text-white px-4 py-2 rounded-full font-semibold hover:bg-gray-100 hover:text-black transition duration-300"
-            >
-              Logout
-            </button>
-          ) : (
-            <Link
-              to={"/login"}
-              className="bg-black text-white px-4 py-2 rounded-full font-semibold hover:bg-gray-100 hover:text-black transition duration-300"
-            >
-              Login
-            </Link>
-          )}
+          {/* Login/Logout Button */}
+          {
+            token ? (
+              <motion.div whileHover={{ scale: 1.1 }}>
+                <Link
+                  onClick={handleLogout}
+                  className="bg-white text-green-700 px-4 py-2 rounded-full font-semibold hover:bg-green-300 transition duration-300"
+                >
+                  Logout
+                </Link>
+              </motion.div>
+            ) : (
+              <motion.div whileHover={{ scale: 1.1 }}>
+                <Link
+                  to="/login"
+                  className="bg-white text-green-700 px-4 py-2 rounded-full font-semibold hover:bg-green-300 transition duration-300"
+                >
+                  Login
+                </Link>
+              </motion.div>
+            )
+          }
+          
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 
