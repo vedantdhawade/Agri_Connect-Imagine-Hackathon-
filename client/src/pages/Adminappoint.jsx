@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Adminappoint = () => {
+  const navigate = useNavigate()
   const [appointments, setAppointments] = useState([]);
 
   // Fetch appointments from the API
@@ -10,6 +12,9 @@ const Adminappoint = () => {
       .then((data) => setAppointments(data))
       .catch((error) => console.error("Error fetching appointments:", error));
   }, []);
+  const handleJoinRoom = (roomId) => {
+    navigate(`/room/${roomId}`);
+  };
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-6">
@@ -34,7 +39,7 @@ const Adminappoint = () => {
                 placeholder="Enter Room"
                 className="border p-2 rounded mb-4 w-full"
               />
-              <button className="bg-blue-500 text-white py-2 px-4 rounded w-full">
+              <button className="bg-blue-500 text-white py-2 px-4 rounded w-full" onClick={()=>{handleJoinRoom(appointment.roomId)}}>
                 Join
               </button>
             </div>

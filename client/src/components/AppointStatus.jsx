@@ -1,117 +1,66 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Cookies from 'js-cookie';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const AppointStatus = () => {
+const Adminappoint = () => {
   const [appointments, setAppointments] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const navigate = useNavigate(); // useNavigate hook to navigate programmatically
+  const navigate = useNavigate();
 
+  // Fetch appointments from the API
   useEffect(() => {
-    const fetchAppointments = async () => {
-      try {
-        // Retrieve userId from cookies
-        const userId = Cookies.get('userId');
-        if (!userId) {
-          setError('User ID not found in cookies');
-          setLoading(false);
-          return;
-        }
-
-        // Fetch appointment data
-        const response = await axios.get(`https://hackathon-back.onrender.com/api/appointments/${userId}`);
-        setAppointments(response.data);
-      } catch (err) {
-        setError(err.response?.data?.message || 'Failed to fetch appointments');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAppointments();
+    fetch("https://hackathon-back.onrender.com/api/appointments")
+      .then((response) => response.json())
+      .then((data) => setAppointments(data))
+      .catch((error) => console.error("Error fetching appointments:", error));
   }, []);
 
-  const handleRoomIdChange = (e, id) => {
-    const updatedAppointments = appointments.map((appointment) => {
-      if (appointment._id === id) {
-        return { ...appointment, roomId: e.target.value };
-      }
-      return appointment;
-    });
-    setAppointments(updatedAppointments);
-  };
-
+  // Function to handle navigation to room
   const handleJoinRoom = (roomId) => {
-    if (roomId) {
-      navigate(`/room/${roomId}`); // Navigate to the specific room's route
-    }
+    navigate(`/room/${roomId}`);
   };
-
-  if (loading) return <div className="text-center py-4">Loading...</div>;
-  if (error) return <div className="text-center py-4 text-red-500">Error: {error}</div>;
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold text-center mb-6">Appointment Status</h2>
-      {appointments.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {appointments.map((appointment) => (
-            <div
-              key={appointment._id}
-              className="bg-white shadow-md rounded-lg p-6 border border-gray-200"
-            >
-              <h3 className="text-lg font-semibold text-gray-700 mb-4">Appointment Details</h3>
-              <p className="text-sm text-gray-600">
-                <strong>Appointment ID:</strong> {appointment._id}
-              </p>
-              <p className="text-sm text-gray-600">
-                <strong>Date:</strong> {new Date(appointment.date).toLocaleDateString()}
-              </p>
-              <p className="text-sm text-gray-600">
-                <strong>Time:</strong> {appointment.time}
-              </p>
-              <p className="text-sm text-gray-600">
-                <strong>Description:</strong> {appointment.description}
-              </p>
-              <p className="text-sm text-gray-600">
-                <strong>Phone Number:</strong> {appointment.phoneNumber}
-              </p>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-6">
+      {appointments.map((appointment) => (
+        <div
+          key={appointment._id}
+          className="bg-white p-4 rounded-lg shadow-md border"
+        >
+          <h3 className="font-bold text-lg mb-2">{appointment.username}</h3>
+          <p className="text-gray-600 mb-2">{appointment.description}</p>
+          <p className="text-gray-600 mb-2">
+            <strong>Time:</strong> {new Date(appointment.date).toLocaleString()}
+          </p>
+          <p className="text-gray-600 mb-2">
+            <strong>Phone:</strong> {appointment.phoneNumber}
+          </p>
 
-              {/* Status Section */}
-              <p className="text-sm text-gray-600">
-                <strong>Status:</strong> 
-                <span className={`font-semibold ${appointment.status === 'confirmed' ? 'text-green-500' : 'text-yellow-500'}`}>
-                  {appointment.status}
-                </span>
-              </p>
-
-              {/* Room ID Input */}
-              <div className="mt-4 flex flex-row">
-                <input
-                  type="text"
-                  value={appointment.roomId || ''}
-                  onChange={(e) => handleRoomIdChange(e, appointment._id)}
-                  className="mt-1 p-2 w-3/4 border border-gray-300 rounded-md"
-                  placeholder="Enter Room ID"
-                />
-                <button 
-                  onClick={() => handleJoinRoom(appointment.roomId)} 
-                  disabled={appointment.status === 'pending'} // Disable if status is 'pending'
-                  className={`bg-blue-600 text-white rounded-lg ml-2 ${appointment.status === 'pending' ? 'opacity-50 cursor-not-allowed' : ''}`}
-                >
-                  {appointment.status === 'pending' ? 'Pending' : 'Join Room'}
-                </button>
-              </div>
+          {appointment.status === "confirmed" ? (
+            <div>
+              <input
+                type="text"
+                placeholder="Enter Room"
+                className="border p-2 rounded mb-4 w-full"
+              />
+              <button
+                onClick={() => handleJoinRoom(appointment.roomId)}
+                className="bg-blue-500 text-white py-2 px-4 rounded w-full"
+              >
+                Join
+              </button>
             </div>
-          ))}
+          ) : (
+            <button
+              className="bg-gray-400 text-white py-2 px-4 rounded w-full cursor-not-allowed"
+              
+              disabled
+            >
+              Join (Pending)
+            </button>
+          )}
         </div>
-      ) : (
-        <p className="text-center text-gray-500">No appointments found.</p>
-      )}
+      ))}
     </div>
   );
 };
 
-export default AppointStatus;
+export default Adminappoint;
